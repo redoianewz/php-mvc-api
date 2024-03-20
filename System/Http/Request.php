@@ -112,16 +112,22 @@ class Request {
         }
         return $_POST;
     }
-
     public function validateField($value, $expectedType, $fieldName)
     {
-        if ($expectedType === 'string' && !is_string($value)) {
-            return "$fieldName field must be a string";
-        } elseif ($expectedType === 'integer' && !is_numeric($value)) {
+        // Trim whitespace from the value
+        $trimmedValue = trim($value);
+
+        if ($expectedType === 'string') {
+            // Check if the value is a string and contains only letters
+            if (!is_string($trimmedValue) || !preg_match('/^[a-zA-Z]+$/', $trimmedValue)) {
+                return "$fieldName field must be a string containing only letters";
+            }
+        } elseif ($expectedType === 'integer' && !is_numeric($trimmedValue)) {
             return "$fieldName field must be an integer";
         }
+
         return null;
-    }
+    } 
     /**
      *  Returns the client IP addresses.
      *

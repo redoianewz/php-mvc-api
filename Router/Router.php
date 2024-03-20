@@ -17,9 +17,8 @@ $router->get('/', function () {
     }
     return $results;
 });
-$router->get('/home','Home@index');
+$router->get('/home', 'Home@index');
 $router->get('/home/:id', 'Home@getUser');
 $router->post('/home', 'Home@createUser');
-$router->put('/home/update/:id','Home@updateUser');
-$router->delete('/home/delete/:id', 'Home@deleteUser');
-
+$router->put('/home/:id', 'Home@updateUser');
+$router->delete('/home/:id', 'Home@deleteUser');

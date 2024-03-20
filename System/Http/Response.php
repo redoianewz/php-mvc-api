@@ -142,6 +142,28 @@ class Response {
     public function setHeader(String $header) {
         $this->headers[] = $header;
     }
+    public function setResponse(int $statusCode = null, string $message = null, $data = null)
+    {
+        // Prepare the response array
+        $response = [
+            'statusCode' => $statusCode,
+            'message' => $message
+        ];
+        if (!is_null($message)) {
+            $response['message'] = $message;
+        }
+
+        // Add data to the response if provided
+        if (!is_null($data)) {
+            $response['data'] = $data;
+        }
+        // If status code is provided, set it using sendStatus
+        if (!is_null($statusCode)) {
+            $this->sendStatus($statusCode);
+        }
+        // Set the content of the response
+        $this->setContent($response);
+    }
 
     /**
      *  Get the response Headers.

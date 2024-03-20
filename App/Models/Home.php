@@ -11,7 +11,7 @@ class ModelsHome extends Model
     }
 
     public function getUserById($userId)
-    {
+    {          
         $sql = "SELECT * FROM user WHERE id = :id";
         $result = $this->db->prepare($sql);
         $result->bindParam(':id', $userId, \PDO::PARAM_INT);

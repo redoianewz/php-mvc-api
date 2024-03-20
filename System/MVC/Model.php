@@ -20,6 +20,7 @@ class Model {
      * @var
      */
     public $db;
+    public $response;
 
     /**
      *  Construct
@@ -33,6 +34,7 @@ class Model {
             DATABASE['Name'],
             DATABASE['Port']    
         );
+        $this->response = $GLOBALS['response'];
     }
     
 }
